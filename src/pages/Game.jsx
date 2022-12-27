@@ -20,7 +20,7 @@ function Game() {
         <div className='pageBody'>
             <h1 className='text-6xl mb-4'>Howzat!</h1>
 
-            <h2 className='text-6xl font-bold mb-4'>
+            <h2 className='text-6xl font-bold text-white mb-4'>
                 {runs}/{wickets}
                 <FontAwesomeIcon onClick={reset} className='ml-6' width={40} icon={faRefresh}/>
             </h2>
