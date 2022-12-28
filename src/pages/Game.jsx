@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRefresh } from '@fortawesome/free-solid-svg-icons'
+import ScoreCard from '../components/ScoreCard'
 
 function Game() {
     const [runs, setRuns] = useState(0)
@@ -39,6 +40,8 @@ function Game() {
                 <button onClick={wicket} className='btn btn-error wicketButton'>LBW</button>
                 <button onClick={wicket} className='btn btn-error wicketButton'>Run Out</button>
             </div>
+
+            <ScoreCard/>
         </div>
     )
 }

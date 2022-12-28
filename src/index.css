@@ -21,6 +21,19 @@
   align-items: center;
 }
 
+.card {
+  background-color: rgb(34, 34, 34);
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+  
+}
+
+.wicketDetails {
+  display: flex; 
+  justify-content: space-between;
+}
+
 
 
 @tailwind base;
