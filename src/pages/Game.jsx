@@ -7,12 +7,27 @@ import ScoreCard from '../components/ScoreCard'
 function Game() {
     const [runs, setRuns] = useState(0)
     const [wickets, setWickets] = useState(0)
+    const [bowls, setBowls] = useState(0)
+
+    const bowl = () => {
+
+        const strBowl = bowls.toFixed(1)
+
+        // add 0.5 because the over has ended and needs to be set back to next int
+        if (strBowl.slice(-1) === '5') {
+            setBowls(bowls+0.5)
+        } else {
+            setBowls(bowls+0.1)
+        }
+    }
 
     const wicket = () => {
+        bowl()
         setWickets(wickets+1)
     }
 
     const reset = () => {
+        setBowls(0)
         setRuns(0)
         setWickets(0)
     }
@@ -26,12 +41,16 @@ function Game() {
                 <FontAwesomeIcon onClick={reset} className='ml-6' width={40} icon={faRefresh}/>
             </h2>
 
+            <h3>
+                ({bowls.toFixed(1)})
+            </h3>
+
             <div className="runButtons">
-                <button onClick={() => {setRuns(runs+1)}} className='btn btn-primary runButton'>1</button>
-                <button onClick={() => {setRuns(runs+2)}} className='btn btn-primary runButton'>2</button>
-                <button onClick={() => {setRuns(runs+3)}} className='btn btn-primary runButton'>3</button>
-                <button onClick={() => {setRuns(runs+4)}} className='btn btn-primary runButton'>4</button>
-                <button onClick={() => {setRuns(runs+6)}} className='btn btn-primary runButton'>6</button>
+                <button onClick={() => {setRuns(runs+1); bowl()}} className='btn btn-primary runButton'>1</button>
+                <button onClick={() => {setRuns(runs+2); bowl()}} className='btn btn-primary runButton'>2</button>
+                <button onClick={() => {setRuns(runs+3); bowl()}} className='btn btn-primary runButton'>3</button>
+                <button onClick={() => {setRuns(runs+4); bowl()}} className='btn btn-primary runButton'>4</button>
+                <button onClick={() => {setRuns(runs+6); bowl()}} className='btn btn-primary runButton'>6</button>
             </div>
 
             <div className="wicketButtons">
@@ -41,7 +60,7 @@ function Game() {
                 <button onClick={wicket} className='btn btn-error wicketButton'>Run Out</button>
             </div>
 
-            <ScoreCard/>
+            {/* <ScoreCard/> */}
         </div>
     )
 }
