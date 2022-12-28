@@ -8,6 +8,7 @@ function Game() {
     const [runs, setRuns] = useState(0)
     const [wickets, setWickets] = useState(0)
     const [bowls, setBowls] = useState(0)
+    const [disableButtons, setDisableButtons] = useState(false)
 
     const bowl = () => {
 
@@ -24,12 +25,16 @@ function Game() {
     const wicket = () => {
         bowl()
         setWickets(wickets+1)
+        if (wickets+1 === 10) {
+            setDisableButtons(true)
+        }
     }
 
     const reset = () => {
         setBowls(0)
         setRuns(0)
         setWickets(0)
+        setDisableButtons(false)
     }
 
     return (
@@ -46,18 +51,18 @@ function Game() {
             </h3>
 
             <div className="runButtons">
-                <button onClick={() => {setRuns(runs+1); bowl()}} className='btn btn-primary runButton'>1</button>
-                <button onClick={() => {setRuns(runs+2); bowl()}} className='btn btn-primary runButton'>2</button>
-                <button onClick={() => {setRuns(runs+3); bowl()}} className='btn btn-primary runButton'>3</button>
-                <button onClick={() => {setRuns(runs+4); bowl()}} className='btn btn-primary runButton'>4</button>
-                <button onClick={() => {setRuns(runs+6); bowl()}} className='btn btn-primary runButton'>6</button>
+                <button disabled={disableButtons} onClick={() => {setRuns(runs+1); bowl()}} className='btn btn-primary runButton'>1</button>
+                <button disabled={disableButtons} onClick={() => {setRuns(runs+2); bowl()}} className='btn btn-primary runButton'>2</button>
+                <button disabled={disableButtons} onClick={() => {setRuns(runs+3); bowl()}} className='btn btn-primary runButton'>3</button>
+                <button disabled={disableButtons} onClick={() => {setRuns(runs+4); bowl()}} className='btn btn-primary runButton'>4</button>
+                <button disabled={disableButtons} onClick={() => {setRuns(runs+6); bowl()}} className='btn btn-primary runButton'>6</button>
             </div>
 
             <div className="wicketButtons">
-                <button onClick={wicket} className='btn btn-error wicketButton'>Bowled</button>
-                <button onClick={wicket} className='btn btn-error wicketButton'>Caught</button>
-                <button onClick={wicket} className='btn btn-error wicketButton'>LBW</button>
-                <button onClick={wicket} className='btn btn-error wicketButton'>Run Out</button>
+                <button disabled={disableButtons} onClick={wicket} className='btn btn-error wicketButton'>Bowled</button>
+                <button disabled={disableButtons} onClick={wicket} className='btn btn-error wicketButton'>Caught</button>
+                <button disabled={disableButtons} onClick={wicket} className='btn btn-error wicketButton'>LBW</button>
+                <button disabled={disableButtons} onClick={wicket} className='btn btn-error wicketButton'>Run Out</button>
             </div>
 
             {/* <ScoreCard/> */}
